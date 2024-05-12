@@ -60,27 +60,25 @@
         <p>Lorsque la longueur du rectangle correspond à sa largeur, le rectangle est alors un carré</p> <br>
     </article>
         <h2>Vous voulez connaitre le périmetre et la surface d'un rectangle ? Alors, utilisez le formulaire ci-dessous !!!</h2>
-        <script>
-            function Rectangle()
-            {
-                var long,larg,p,a;
-                long=parseFloat(document.frmRectangle.txtlong.value);
-                larg=parseFloat(document.frmRectangle.txtlarg.value);
-                p=(long+larg)*2;
-                a=long*larg;
-                document.frmRectangle.txtp.value=p;
-                document.frmRectangle.txta.value=a;
-            }
-        </script>
-        <form class="formulaire" name="frmRectangle">
-        <h1>Entrez les mesures de votre rectangle.</h1>
-            La largeur :<input type="text" name="txtlong" id="long" size="15">
-             et la longueur :<input type="text" name="txtlarg" id="larg" size="15">
-            <input type="button" name="btnEgal" value="=" onclick="Rectangle();">
-            <hr><!-- permet l'affichage d'une ligne horizontale de séparation --> <br>
-            Périmetre : <input type="text" name="txtp" id="p" size="15"> <br>
-            Surface : <input type="text" name="txta" id="a" size="15">
-        </form>
+        <p>Résultats :</p> 
+
+    <?php
+        
+        // Récupération des données envoyées via la méthode POST
+        $longueur = $_POST["longueur"]; // Stockage de la longueur saisie dans la variable $longueur
+        $largeur = $_POST["largeur"]; // Stockage de la largeur saisie dans la variable $largeur
+
+        // Calcul du périmetre et de la surface
+        $perimetre = 2 * ($longueur + $largeur); // Calcul du périmètre en doublant la somme de la longueur et de la largeur
+        $surface = $longueur * $largeur; // Calcul de la surface en multipliant la longueur par la largeur
+        echo ("<p> Périmètre : $perimetre <br> Surface : $surface </p>"); // Affichage du résultat du périmetre et de la surface
+
+    ?>
+      <form action="scriptRectangle.php" method="post"> <!-- Formulaire envoyant les données vers scriptRectangle.php avec la méthode POST -->
+    <label>Longueur : </label><input type="text" name="longueur"> <!-- Étiquette pour le champ de saisie de la longueur du rectangle + Champ de saisie pour la longueur du rectangle -->
+    <label>Largeur :  </label><input type="text" name="largeur"> <!--  Étiquette pour le champ de saisie de la largeur du rectangle + Champ de saisie pour la largeur du rectangle -->
+    <input type="submit" value="Calcul"> <!-- Bouton de soumission du formulaire avec le texte "Calcule" -->
+</form>  
     </section>  
 </body>
 </html>
