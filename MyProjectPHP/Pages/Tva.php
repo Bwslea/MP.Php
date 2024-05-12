@@ -96,27 +96,33 @@
                 C’est-à-dire 0,16 x 100 = 6 €</p>
             </article>
             <h2>Utiliser l’application suivante pour calculer le montant de la TVA et le taux TVAC</h2>
-            <script>
-                function Tva()
-                {
-                    var prixHtva,taux,montantTva,prixTvac;
-                    prixHtva=parseFloat(document.frmTva.txtprixHtva.value);
-                    taux=parseFloat(document.frmTva.txttaux.value);
-                    montantTva=prixHtva*taux/100;
-                    prixTvac=prixHtva+montantTva;
-                    document.frmTva.txtmontantTva.value=montantTva;
-                    document.frmTva.txtprixTvac.value=prixTvac;
-                }
-            </script>
-            <form class="formulaire" name="frmTva">
-                <h1>Entrez le montant à convertir.</h1>
-                Prix Htva : <input type="text" name="txtprixHtva" id="prixHtva" size="15"> <br>
-                Taux de Tva : <input type="text" name="txttaux" id="taux" size="15">
-                <input type="button" name="btnEgal" value="=" onclick="Tva();">
-                <hr> <!-- permet l'affichage d'une ligne horizontale de séparation --> <br>
-                Montant Tva : <input type="text" name="txtmontantTva" id="montantTva" size="15"> <br>
-                Prix Tvac : <input type="text" name="txtprixTvac" id="prixTvac" size="15">
-            </form>
+            <p>Résultats :</p>
+
+    <?php
+        
+            // Récupération des données envoyées via la méthode POST
+            $prixHtva = $_POST["prixHtva"]; // Stockage du prix hors TVA dans la variable $prixHT
+            $taux = $_POST["taux"]; // Stockage du taux de TVA dans la variable $tauxTVA
+
+            // Calcul de la TVA
+            $montantTva = $prixHtva * $taux / 100; // Calcul de la TVA en pourcentage du prix hors TVA
+
+            // Calcul du prix TTC (TVA comprise)
+            $prixTvac = $prixHtva + $montantTva; // Calcul du prix TTC en ajoutant la TVA au prix hors TVA
+
+            // Affichage des résultats
+            echo ("<p>Montant Tva : $montantTva </p>"); // Affichage du montant de la TVA
+            echo ("<p>Prix Tvac : $prixTvac</p>"); // Affichage du prix TTC
+            
+      
+    ?>
+            <h1>Calcul de Tva</h1> 
+
+    <form action="scriptTva.php" method="post"> <!-- Formulaire envoyant les données vers calculTVA.php avec la méthode POST -->
+        <label>Prix hors Tva :</label><input type="text" name="prixHtva">  <!-- Étiquette pour le champ de saisie du prix hors TVA + Champ de saisie pour le prix hors TVA -->
+        <label>Taux de Tva (%) :</label><input type="text" name="tauxTva"> <!-- Étiquette pour le champ de saisie du taux de TVA + Champ de saisie pour le taux de TVA -->
+        <input type="submit" value="Calculer"> <!-- Bouton de soumission du formulaire avec le texte "Calculer" -->
+    </form>
     </section>
 </body>
 </html>
