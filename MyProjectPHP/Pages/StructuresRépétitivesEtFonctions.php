@@ -49,7 +49,7 @@
             </ul>
         </nav>
     </header>
-    <section id="jeuMains">
+    <section id="jeuMains"> REFAIRE
         <script>
             function jeu(){
                 var Na,Nb,SCA,SCB,S,V;
@@ -99,7 +99,7 @@
         <br>
 
     </section>
-    <section id="jeuDevin">
+    <section id="jeuDevin"> REFAIRE
         <script>
             function jeuDevin(){
                 var Jeu, Na, Nb;
@@ -161,23 +161,26 @@
         
     </section>
     <section id="PGCD">
-        <script>
-            function pgcd(){
-                A = document.frmPgcd.nbrA.value;
-                B = document.frmPgcd.nbrB.value;
-                if(A>B){
-                    C = A;
-                    A = B;
-                    B = C;
-                }
-                while(B != 0){
-                    reste = A%B;
-                    A = B;
-                    B = reste;
-                }
-                document.write("Le pgcd entre A et B est ", A);
+        
+    <?php
+        if (isset($_POST["txtA"])&& isset($_POST["txtB"])){
+            $A=$_POST["txtA"];
+            $B=$_POST["txtB"];
+            if($A>$B){
+                $C=$A;
+                $A=$B;
+                $B=$C;
+
             }
-        </script>
+            while ($B!=0){
+                $Reste=$A%$B;
+                $A=$B;
+                $B=$Reste;
+            }
+            echo("Le PGCD est $A");
+
+        }
+    ?>
         <h1>Projet PGCD </h1>
         <form class="formulaire" name="frmPgcd">
             <p>ENONCÉ : RECHERCHER LE PGCD ENTRE DEUX NOMBRES NATURELS A ET B DONNÉS.</p>
@@ -194,13 +197,13 @@
                 8.	ECRIRE LE PGCD
                 </p> <br>
             <hr> <br>
-            <label>A :</label> <input type="number" name="nbrA"><br>
-            <label>B :</label> <input type="number" name="nbrB"><br>
-            <input type="submit" value="calculerPGCD" onclick="pgcd()">
-        </form>
+        <label>A : </label><input type="text" name="txtA">
+        <label>B : </label><input type="text" name="txtB">
+        <input type="submit" value="calculer" name="">
+    </form>
         <br>
     </section>
-    <section id="Moyenne">
+    <section id="Moyenne"> REFAIRE
         <script>
         function moyenne(){
             var moy, resultat, i, n, S;
@@ -238,7 +241,7 @@
     <br>
         
     </section>
-    <section id="PPCM">
+    <section id="PPCM"> REFAIRE
         <script>
             function PGCD(A, B){
                 if(A>B){
@@ -280,16 +283,20 @@
 
     </section>
     <section id="SommeNaturels">
-        <script>
-            function sommeNaturel(){
-                N = document.frmSommeN.nbrN.value;
-                somme = 0;
-                for(let i=0; i <= N; i++){
-                    somme += i;
-                }
-                document.write("Somme des nombres allant jusqu'à ", N," est de ", somme);
-            }
-        </script>
+         <?php
+        if (isset($_POST["txtN"])){
+            $N=$_POST["txtN"];
+
+        $Somme=0;
+
+        for($i=1;$i<=$N;$i++){
+            $Somme=$Somme+$i;
+        }
+
+            echo("La somme est de $Somme");
+        }
+        
+    ?>
         <h1>Projet Somme Naturels </h1>
         <form class="formulaire" name="frmSommeN">
             <p>ENONCÉ : CALCULER LA SOMME DES N PREMIERS NATURELS. </p>
@@ -299,24 +306,27 @@
                 3.	ECRIRE LA SOMME DES N PREMIERS NOMBRES NATURELS (S)
                 </p> <br>
             <hr> <br>
-            <input type="number" name="nbrN">
-            <input type="submit" value="calculerSomme" onclick="sommeNaturel()">
-        </form>
+        <label>N : </label><input type="text" name="txtN">
+        <input type="submit" value="calculer" name="">
+    </form>
         <br>
         
     </section>
     <section id="SommePairs">
-        <script>
-            function sommeNaturelPair(){
-                N = document.frmSommeNP.nbrNP.value;
-                somme = 0;
-                for(let i=2; i <= N; i=i+2){
-                    somme += i;
-                }
-                document.write("Somme des nombres pair allant jusqu'à ", N," est de ", somme);
-            }
+        
+    <?php
+        if (isset($_POST["txtN"])){
+            $N=$_POST["txtN"];
 
-        </script>
+        $Somme=0;
+
+        for($i=2;$i<=$N;$i+=2){
+            $Somme=$Somme+$i;
+        }
+
+            echo("La somme est de $Somme");
+        }
+    ?>
         <h1>Projet Somme Pairs </h1>
         <form class="formulaire" name="frmSommeNP">
             <p>ENONCÉ : CALCULER LA SOMME DES NOMBRES PREMIERS NATURELS PAIRS.</p>
@@ -326,35 +336,35 @@
                 3.	ECRIRE LA SOMME DES NOMBRES NATURELS PAIRS (S)
                 </p> <br>
             <hr> <br>
-            <input type="number" name="nbrNP">
-            <input type="submit" value="calculerSommePair" onclick="sommeNaturelPair()">
-        </form>
+        <label>N : </label><input type="text" name="txtN">
+        <input type="submit" value="calculer" name="">
+    </form>
         <br>
         
     </section>
     <section id="CoefficientsBinomiaux">
-        <script>
-            function fact(X){
-                F = 1;
-                if(X === 0 ){
-                    return 1;
+        <?php
+        Function Fact($X){
+            $F=1;
+            if($X!=0){
+                for($i=1;$i<=$X;$i++){
+                    $F=$F*$i;
+                    }
                 }
-                for(let i=1;i <= X; i++){
-                    F = F*i;
-                }
-                return F;
+                return $F;
+            }  //Script Principal
+        if (isset($_POST["txtN"]) && isset($_POST["txtK"])){
+            $N=$_POST["txtN"];
+            $K=$_POST["txtK"];
+            if($N>=$K){
+            $CB=Fact($N)/(Fact($K)*Fact($N-$K));
+            echo("Le coéfficient binomial est $CB");
             }
-
-            function coefBinomiaux(){
-                n = document.frmCB.nbrCBN.value;
-                k = document.frmCB.nbrCBK.value;
-                if(n < k){
-                    alert("Coefficient impossible");
-                }
-                cb = fact(n)/(fact(k)*fact(n-k));
-                document.write("Coef binomial pour N = ", n, " et K = ", k," vaut : ", cb);
+            else{
+            echo("Le coéfficient binomial est impossible");
             }
-        </script>
+    }     
+    ?>
         <h1>Projet Coefficients Binomiaux </h1>      
         <form  class="formulaire" name="frmCB">
             <p>ENONCÉ : CALCULER LES COEFFICIENTS BINOMIAUX.</p>
@@ -363,10 +373,10 @@
                 2.	ECRIRE N FACTORIEL ( N ! = FACT(N) )
                 </p> <br>
             <hr> <br>
-            <input type="number" name="nbrCBN">
-            <input type="number" name="nbrCBK">
-            <input type="submit" value="calculerCoefBinomiaux" onclick="coefBinomiaux()">
-        </form>
+        <label>N : </label><input type="text" name="txtN">
+        <label>K : </label><input type="text" name="txtK">
+        <input type="submit" value="calculer" name="">
+    </form>
         <br>
     </section>
 </body>
