@@ -43,7 +43,7 @@
                 <li><a href="#">Tableaux</a></li>
                 <li class="deroulement"><a href="./FinApprentissage.html">Fin d’apprentissage </a>
                     <div class="onglets">
-                        <a href="./FinApprentissage.html#Tr">Tris</a>
+                        <a href="./FinApprentissage.html#Aldrin">Aldrin</a>
                     </div>
                 </li>
             </ul>
