@@ -50,49 +50,28 @@
         </nav>
     </header>
     <section id="testAchat">
-        <script>
-            function somme(X){
-                let S=0;
-                let N=X.length;
-                for(let i=0;i<=N-1;i++){
-                    S=parseFloat(X[i]);
-                }
-                return S; 
-            }
-            function EcrireRapport(X){
-                let N=X.length;
-                let prixmoyen=somme(X)/N;
-                  document.write("<div style='border-collapse:collapse;width:90%;margin:0 auto;text-align:center;background-color:rgba(32, 86, 72, 0.543); margin:15px;'>"); 
-                  document.write("<legend>"); document.write("Rapport : Test Achat"); document.write("</legend>");
-                  
-                  document.write("<table style='border-collapse:collapse;width:90%;margin:0 auto;text-align:center;background-color:rgba(32, 86, 72, 0.543);'>");
-                  document.write("<tr style='background-color :rgba(32, 86, 72, 0.543) ;color:beige'>");
-                  document.write("<th style='border: 1px solid rgba(32, 86, 72)'>Magasin n°</th>");
-                  document.write("<th style='border: 1px solid rgba(32, 86, 72)'>Prix</th>");
-                  document.write("<th style='border: 1px solid rgba(32, 86, 72)'>%</th>");
-                  document.write("</tr>");
-                    for(let i=0;i<=N-1;i++){
-                        let prct=X[i]/prixmoyen;
-                          document.write("<tr>");
-                          document.write("<td style='border: 1px solid rgb(116, 143, 105)'>"); document.write(i); document.write("</td>");
-                          document.write("<td style='border: 1px solid rgb(116, 143, 105)'>"); document.write(X[i]); document.write("</td>");
-                          document.write("<td style='border: 1px solid rgb(116, 143, 105)'>"); document.write(prct); document.write("</td>");
-                          document.write("</tr>");
-                    }
-                        document.write("<tr>");
-                        document.write("<td style='border: 1px solid rgb(116, 143, 105)'>"); document.write("Prix Moyen"); document.write("</td>");
-                        document.write("<td colspan='2' style='border: 1px solid rgb(116, 143, 105)'>"); document.write(prixmoyen.toFixed(2)+"€"); document.write("</td>");
-                        document.write("</tr>");
-                        document.write("</table>");
-                        document.write("</div>"); 
-            }
-            function Rapport(){
-                var prix=new Array();
-                var ListePrix=document.frmTestAchats.txtListePrix.value;
-                prix=ListePrix.split(","); 
-                EcrireRapport(prix);
-            }
-        </script>
+       <?php
+    function EcrireRapport($X) {
+        $N = count($X);
+        $PrixMoyen = array_sum($X) / $N;
+      
+        echo '<table border="1" cellpadding="5" cellspacing="0" style="border-collapse: collapse; background-color:pink;">';
+        echo '<tr><th>Magasin</th><th>Prix (€)</th><th>Pourcentage</th></tr>';
+
+        for ($i = 0; $i < $N; $i++) {
+            $Prct = $X[$i] / $PrixMoyen * 100;
+            echo "<tr><td>Magasin n°" . ($i + 1) . "</td><td>" . $X[$i] . "</td><td>" . number_format($Prct, 2) . "%</td></tr>";
+        }
+        echo "<tr><td colspan='3'  >Le prix moyen est " . number_format($PrixMoyen, 2) . "€</td></tr>";
+        echo '</table>';
+    }
+
+    if(isset($_POST['txtListePrix'])) {
+        $ListePrix = $_POST['txtListePrix'];
+        $Prix = explode(",", $ListePrix);
+        EcrireRapport($Prix);
+    }
+    ?>
         <div class="formulaire">
             <form name="frmTestAchats">
                 <label for="frmTestAchats" style="color: rgb(255, 255, 255); font-size: 30px;">Projet Test Achat</label>
@@ -107,58 +86,62 @@
                     6.	ÉCRIRE LES N POURCENTAGE DE CHAQUE MAGASIN
                     </p>
                 <br><hr> <br>
-                Encoder tous les prix comme suit : 4,9,2, ... <input type="text" name="txtListePrix" id="N" size="15" style="margin-bottom: 15px;">
-                <hr>
-                <br>
-                <input type="button" name="btnExtremaN" value="Créer le tableau" onclick="Rapport()">
-            </form>
+        Liste Prix (séparer par des virgules) :
+        <br>
+        <input type="text" name="txtListePrix">
+        <input type="submit" name="btnEgal" value="=">
+    </form>
             </div>
             <br>
     </section>
     <section id="extremaN">
-    <script>
-        function Lir(X){
-            let N,i;
-            N = document.frmExtremaN.txtIN.value; 
+    <?php
+    function Mini($X) {
+    $Mn = $X[0];
+    $N = count($X);
+    for ($i = 0; $i <= $N-1; $i++) {
+        if ($X[$i] < $Mn){ 
+            $Mn = $X[$i];
+        }
+    }
+    return $Mn;
+}
+    function Maxi($X) {
+    $Mx = $X[0];
+    $N = count($X);
+    for ($i = 0; $i <= $N-1; $i++) {
+        if ($X[$i] > $Mx){ 
+            $Mx = $X[$i];
+        }
+    }
+    return $Mx;
+}
 
-            for (i =0; i<=(N-1); i++) {
-                 X[i] = parseFloat(prompt("Entrer le nombre n° "+(i+1)+" :"));
-            }
-        } 
-        function Min(X){
-            let N=X.length,i,Mn;
-            Mn=X[0];
-            for( i=1;i<N;i++){
-                if(X[i]<Mn)
-                    Mn=X[i];
-            } 
-            return Mn;  
-        } 
-        function Max(X){
-            let N=X.length,i,Mx;
-            Mx=X[0];
-            for( i=1;i<N;i++){
-                if(X[i]>Mx)
-                    Mx=X[i];
-            } 
-            return Mx;
-        }   
-        function rechercher (){
-            let X =new Array();
-            /* Lecture de N nombres*/
-            Lir(X);
+    function EcrireRapport($X) {
+    $Mn=Mini($X);
+    $Mx=Maxi($X);
+    echo ("<div style= 'margin: 5px;'>");
+    echo ("<table style='border-collapse: collapse; text-align: center; margin: auto; height: 250px; width: 300px; background-color: lightpink;'>");
+    echo ("<caption style='border: solid; background-color: beige;'>ExtremaN</caption>");
+    echo ("<tr>");
+    echo ("<th style='border: solid; background-color: beige;'>Max:</th>");
+    echo ("<th style='border: solid; background-color: beige;'>Min:</th>");
+    echo ("</tr>");
+    echo ("<tr>");
+    echo ("<td style='border: solid; background-color: beige;'>$Mx</td>");
+    echo ("<td style='border: solid; background-color: beige;'>$Mn</td>");
+    echo ("</tr>");
+    echo ("</table>");
+    echo ("</div>");
 
-            /* Ecrire des extrema */
-            document.write("<h1 style='color: rgba(32, 86, 72);'>Rapport : Extrema N</h1>");
-            document.write('<div style="background-color: rgba(32, 86, 72, 0.543); padding: 10px; margin-bottom: 10px; width: 80%; height: 200px;">');
-            document.write('<table border="1" style="width: 100%; height: 100%;">');
-            document.write('<tr><th><p></p></th><th><p style="color: black;">Valeur</p></th></tr>');
-            document.write('<tr><td>Maximum</td><td>' + Max(X) + '</td></tr>');
-            document.write('<tr><td>Minimum</td><td>' + Min(X) + '</td></tr>');
-            document.write('</table>');
-
-        }       
-    </script> 
+    } 
+    if(isset($_POST['txtListeNombres'])) {
+        $txtListeNombres=$_POST['txtListeNombres'];
+        $nombres=explode(",",$txtListeNombres);
+        EcrireRapport($nombres);
+        }  
+    
+?>
         <div class="formulaire">
             <form name="frmExtremaN">
                 <label for="frmExtremaN" style="color: rgb(255, 255, 255); font-size: 30px;">Projet Extrema N</label>
@@ -174,15 +157,18 @@
                     4.	ÉCRIRE MAX ET MIN
                     </p>
                 <br> <hr> <br>
-                Combien de nombres y aura-t-il ? <input type="text" name="txtIN" id="N" size="15" style="margin-bottom: 15px;">
-                <hr>  <br>
-                <input type="button" name="btnExtremaN" value="Créer le tableau" onclick="rechercher()">
-            </form>
+            <label for="txtListeNombres" style="color: rgb(225, 82, 105); font-size: 30px;">Extrema N</label>
+            <br>
+            <br>
+            Combien il y'aura-t-il de nombres: <input type="text" name="txtListeNombres" id="txtListeNombres" size="15">
+            <hr>
+            <input type="submit" name="btnExtremaN" value="créer un rapport">
+        </form>
             </div>
             <br>
     </section>
     <section id="Indice">
-        <script>
+        <!-- <script>
             function Lire(X){
                 N = document.frmIndiceExtremaN.txtN.value;
                 for (let i = 0; i <= N - 1; i++){
@@ -253,7 +239,7 @@
                 EcrireTableau(Nombres);
                 EcrireTableauExtrema(Nombres);
             }
-        </script>
+        </script>-->
 
 
         <div class="formulaire">
@@ -263,9 +249,8 @@
                     <br>Ainsi si le tableau contient: 6, -8, -4, 2,10,4 on indiquera que : le minimum est l’élément n° 1 du tableau ET le maximum est l’élément n° 4 du tableau</p>
                 <br> <hr> <br>
                 Combien de nombres y aura-t-il ? : <input type="text" name="txtN" id="N" size="15" style="margin-bottom: 15px;">
-                <hr>
-                <br>
-                <input type="button" name="btnExtremaN" value="Créer le tableau" onclick="ExtremaN()">
+                <hr> <br>
+              <!--  <input type="button" name="btnExtremaN" value="Créer le tableau" onclick="ExtremaN()">-->
             </form>
             </div>
     </section>
