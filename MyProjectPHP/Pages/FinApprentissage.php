@@ -50,11 +50,45 @@
         </nav>
     </header>
     <section id="Aldrin">
+         <?php
+    function isAldrin($x){
+        $som = 0;
+        $nbr = $x;
+        while($nbr > 0){
+            $chiffre = $nbr % 10;
+            $som += $chiffre * $chiffre * $chiffre;
+            $nbr =(int)($nbr / 10);
+        }
+        return $som == $x;
+    }
+    // y = tous les nombres d'aldrin trouves apres calcul
+    function ecrireNombresAldrin($x){
+      // Affichage
+      echo "<table border='1'>";
+      echo "<tr><th>Number</th></tr>";
+      foreach($x as $value){
+          echo "<tr><td>".$value."</td></tr>";
+      }
+      echo "</table>";
+    }
+    $resultats = array();
+    if(isset($_POST['number'])){
+      $nbrencode = $_POST['number'];
+        for($i = 1; $i <= $nbrencode; $i++){
+            if(isAldrin($i)){
+                $resultats[] = $i;
+            }
+        }  
+      ecrireNombresAldrin($resultats);
+    }
+  ?>
         <h1>Projet Aldrin</h1>
         <p></p>
         <p></p> <br>
         <hr> <br>
-        <form class="formulaire">
+        <form class="formulaire" method="POST">
+        <input type="text" id="number" name="number" placeholder="Enter a number">
+        <button type="Calculer" name="Calculer">Calculer</button>
         </form>
     </section>
 </body>
