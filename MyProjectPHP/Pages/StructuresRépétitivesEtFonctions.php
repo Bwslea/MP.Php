@@ -49,8 +49,8 @@
             </ul>
         </nav>
     </header>
-    <section id="jeuMains"> REFAIRE
-        <script>
+    <section id="jeuMains">
+        <!-- <script>
             function jeu(){
                 var Na,Nb,SCA,SCB,S,V;
                 SCA=0;
@@ -77,7 +77,7 @@
                 }
                 document.write("Le vainqueur est le " +V);
             }
-        </script>
+        </script>-->
         <h1>Projet Jeu de mains </h1>
         <form class="formulaire" name="frmJeuMain">
             <p>ENONCÉ : SI LA SOMME DES DOIGTS MONTRÉS EST PAIRE, LE 1E JOUEUR MARQUE UN POINT. SI LA SOMME DES DOIGTS MONTRÉS EST IMPAIRE, C’EST LE 2E JOUEUR QUI MARQUE UN POINT. LE JEU S’ARRÊTE LORSQUE QUE L’ON AURA JOUÉ 21 FOIS OU LORSQUE L’UN DES 2 JOUEURS AURA MARQUÉ 3 POINTS DE PLUS QUE SON ADVERSAIRE.</p>
@@ -94,13 +94,13 @@
                 7.	Ecrire le vainqueur
                 </p> <br>
             <hr> <br>
-            <input type="submit" value="jouer" onclick="jeu()">
+            <!-- <input type="submit" value="jouer" onclick="jeu()">-->
         </form>
         <br>
 
     </section>
-    <section id="jeuDevin"> REFAIRE
-        <script>
+    <section id="jeuDevin">
+     <!--   <script>
             function jeuDevin(){
                 var Jeu, Na, Nb;
                 Jeu=0;
@@ -135,7 +135,7 @@
                     document.write("Perdu, le nombre mystère était ", +Na);
                 }
             }
-        </script>
+        </script>-->
         <h1>Projet Jeu du devin </h1>
         <form class="formulaire" name="frmJeuDevin">
             <p>ENONCÉ : L’ORDINATEUR CHOISIT ALÉATOIREMENT UN NOMBRE MYSTÉRIEUX COMPRIS ENTRE 1 ET 100. LE JOUEUR B DOIT DEVINER CE NOMBRE. LE JEU S’ARRÊTE LORSQUE L’ON A JOUÉ 11 FOIS OU LORSQUE LE JOUEUR A TROUVÉ CE NOMBRE MYSTÉRIEUX.</p>
@@ -155,7 +155,7 @@
                 8.	ECRIRE LE VAINQUEUR (V) <br>
                 </p> <br>
             <hr> <br>
-            <input type="submit" value="jouerDevin" onclick="jeuDevin()">
+         <!--   <input type="submit" value="jouerDevin" onclick="jeuDevin()">-->
         </form>
         <br>
         
@@ -203,8 +203,8 @@
     </form>
         <br>
     </section>
-    <section id="Moyenne"> REFAIRE
-        <script>
+    <section id="Moyenne">
+    <!--    <script>
         function moyenne(){
             var moy, resultat, i, n, S;
             do{
@@ -223,7 +223,7 @@
             
             document.write("La moyenne de la classe est de : " +moy);
         }
-    </script>
+    </script>-->
         <h1>Projet Moyenne </h1>
     <form class="formulaire" name="frmMoyenne">
         <p>ENONCÉ : CALCULER LA MOYENNE D’UNE CLASSE DE N ÉTUDIANTS À UN EXAMEN.</p>
@@ -235,14 +235,14 @@
             5.	ECRIRE LA MOYENNE
             </p> <br>
         <hr> <br>
-        <input type="number" name="nbrEtudiant">
-        <input type="submit" onclick="moyenne()">
+       <!-- <input type="number" name="nbrEtudiant">
+        <input type="submit" onclick="moyenne()">-->
     </form>
     <br>
         
     </section>
     <section id="PPCM"> REFAIRE
-        <script>
+       <!-- <script>
             function PGCD(A, B){
                 if(A>B){
                     C = A;
@@ -264,7 +264,7 @@
                 PPCM=(A*B)/PGCD(A,B);
                 document.write("Le PPCM est de : ",  PPCM);
             }  
-        </script>
+        </script>-->
         <h1>Projet PPCM </h1>
         <form class="formulaire" name="frmPPCM">
             <p>ENONCÉ : RECHERCHER LE PPCM ENTRE 2 NOMBRES NATURELS </p>
@@ -275,9 +275,9 @@
                 4.	ECRIRE LE PPCM
                 </p> <br>
             <hr> <br>
-            <label>A :</label> <input type="number" name="nbrAp"><br>
+           <!-- <label>A :</label> <input type="number" name="nbrAp"><br>
             <label>B :</label> <input type="number" name="nbrBp"><br>
-            <input type="submit" value="calculerPPCM" onclick="PPCM()">
+            <input type="submit" value="calculerPPCM" onclick="PPCM()">-->
         </form>
         <br>
 
