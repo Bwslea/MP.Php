@@ -1,0 +1,368 @@
+@charset "utf-8";
+@font-face {
+    font-family:"Carattere-Regular" ;
+    src: url(../Fonts/Carattere-Regular.ttf);
+}
+@font-face {
+    font-family: "Diphylleia-Regular";
+    src: url(../Fonts/Diphylleia-Regular.ttf);
+}
+@font-face {
+    font-family:"Rajdhani-Regular" ;
+    src: url(../Fonts/Rajdhani-Regular.ttf);
+}
+*{
+    margin: 0;
+    padding: 0;
+}
+/*body
+************/
+body {
+        
+    font-weight: 500;
+    background-image: url("../Images/fondSable.jpg") ;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    
+}
+h1 {
+    font-style: italic;
+}
+ul {
+    list-style: none;
+}
+/*header
+************/
+header {
+    /* background-color: yellow; */
+    width: 100%;
+    text-align: center;
+}
+.main_title {
+    text-align: left;
+    padding-bottom: 10px;
+    color: rgb(99, 104, 101);
+    text-shadow: 2px 2px 2px rgb(255, 255, 255);
+    & div {
+        align-self: flex-end;
+    }
+    & img{
+        padding: 6px;
+        margin-bottom: 0;
+    }
+    & h1{
+        font-size: 2.5em;
+        font-weight: normal;
+        font-family: "Diphylleia-Regular", serif ;
+        margin-bottom: 0;
+        color: rgb(126, 127, 126);
+        text-shadow: 2px 2px 2px rgb(255, 255, 255);
+    }
+    & h2 {
+        font-family: "Rajdhani-Regular", serif;
+        font-size: 1.1em;
+        font-weight: normal;
+        margin-top: 0;
+        letter-spacing: 0.9px;
+        margin-left: 3px;
+    }
+}
+/*nav
+************/
+nav {
+    /* background-color: rgb(219, 127, 255); */
+    width: 100%;
+    padding-top: 20px;
+    padding-bottom: 20px;
+
+    word-spacing: 13px;
+    font-weight: bold;
+    font-size: large;
+    /* text-shadow: 2px 2px 2px rgb(196, 255, 223);
+    background-color:rgba(64, 103, 76, 0.081); */
+    background-image: url("../Images/eauVerte.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    text-transform: uppercase;
+    font-weight: bold;   
+    font-family:"Diphylleia-Regular" ;
+}
+nav ul {
+    margin-left: 4%;
+}
+nav ul li {
+    display: inline-block;
+    list-style-type: none;
+    a{  font-size: 1.2em;
+        text-decoration: none;
+        color: rgba(255, 248, 235, 0.952);
+        padding-bottom: 3px;
+        text-shadow: 2px 1px 2px rgb(0, 0, 0);
+    }
+}
+nav ul li a:hover {
+    color: rgba(250, 233, 203, 0.952);
+    text-decoration: underline 3px rgb(255, 255, 255);
+    text-shadow: 2px 1px 2px rgb(0, 0, 0);
+
+}
+.navigation_menu{
+    border: rgba(255, 242, 218, 0.952) 5px solid;
+    border-right: 0px;
+    border-left: 0px;
+
+}
+.onglets {
+    display: none;
+    position: absolute;
+    background-color: rgba(255, 248, 235, 0.952);
+    min-width: 100px;
+    box-shadow: 0px 4px 10px 5px rgb(0, 0, 0);
+    z-index: 100;
+    width: 20%;
+    /* transform: translate( 0px , 1em); */
+}
+.onglets a{
+    color: rgba(255, 242, 218, 0.952);
+    text-shadow: 3px 3px 3px rgb(0, 0, 0);
+    padding: 15px;
+    text-decoration: none;
+    text-align: center;
+    display: block;
+    width: 80%;
+}
+.onglets a:hover {
+    color: rgb(0, 0, 0);
+    text-decoration: none;
+    text-shadow: 2px 2px 2px rgba(255, 242, 218, 0.952);
+}
+
+.deroulement::after{
+    content: "⌵";
+    color: rgba(255, 248, 235, 0.952);
+    float: inline-end;
+    margin-left: 2px;
+}
+.deroulement:hover .onglets{
+    display: block;
+}
+/*div .banner
+************/
+.banner {
+    position: relative; /* Add this line to establish a positioning context */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: url("../Images/vuePlage.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    width: auto;
+    height: 330px;
+    margin-left: 10px;
+    margin-right: 10px;
+    border-style:hidden;
+    border-radius: 15px;
+    margin-top: 6px;
+}
+
+.titreImage {
+    position: absolute; /* Add this line to position it absolutely */
+    font-weight: 900;
+    color: rgba(32, 86, 72);
+    font-size: 45px;
+    text-shadow: 2px 2px 3px rgb(248, 255, 222);
+    top: 50%; /* Center vertically */
+    left: 50%; /* Center horizontally */
+    transform: translate(-50%, -50%); /* force à bouger titre hors du container*/
+    white-space: nowrap; /* force a rester en une ligne */
+}
+.red_button {
+    height: 100%;
+    width: 15px;
+    display: inline-block;
+}
+button{
+    padding: 5px;
+    font-weight: 400; 
+    border: solid 2px rgba(64, 103, 76, 0.836);
+    border-radius: 5px;
+    cursor: pointer;  
+    background-color: rgba(231, 255, 249, 0.696);
+}
+#myBtn {
+    padding: 1px;
+    font-weight: 900;
+    padding-right: 3px;
+    position: absolute; /* Add this line to position it absolutely */
+    font-size: small;
+    align-self: flex-end;
+    bottom: 8px; /* Align to the bottom */
+    right: 6px; /* Align to the right */
+}
+/* Hors Boite Modale (background) */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    padding-top: 100px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(89, 125, 116, 0.32);
+}
+/* Contenant boite modale */
+.modal-content{
+    background-color: rgba(58, 83, 66, 0.952);
+    margin-left: 25%;
+    margin-right: 25%;
+    margin-top: 150px;
+    padding: 20px;
+    border: 2px solid rgb(31, 47, 36);
+    border-style:dashed;
+    border-radius: 15px;
+    width: 55%;
+    font-size: large;
+    & p{
+        color: rgb(177, 218, 196);
+        text-shadow: 3px 3px 3px rgb(31, 47, 36);
+    } 
+}
+/* croix fermeture boite */
+.close{
+    color: rgb(89, 125, 116);
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+.close:hover,.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+/*section
+************/
+section {
+    display: flex;
+    width: 100%;
+    h1{
+        text-transform: uppercase;
+        font-weight: normal;   
+        font-family:"Diphylleia-Regular" ;
+    }
+    a{  font-size: 1.2em;
+        text-decoration: none;
+        color: rgb(255, 242, 218);
+        text-shadow: 3px 3px 3px rgb(0, 0, 0);
+        padding-bottom: 3px;
+    }
+    a:hover {
+        color: rgb(0, 0, 0);
+        text-shadow: 3px 3px 3px rgba(255, 242, 218, 0.952);
+        text-decoration: underline 3px rgb(0, 0, 0);
+    }
+}
+/*article
+************/
+article {
+    /* background-color: red; */
+    width: 68%;
+    font-size: larger;
+    margin: 10px;
+    margin-top: 20px;
+    margin-bottom: 60px;
+    padding: 35px;
+    border: solid rgba(64, 103, 76, 0.836);
+    border-radius: 15% 10% / 5% 25%;
+    border-style:double;
+    border-width: 4px;
+    background-color:rgba(64, 103, 76, 0.081);
+    h1 {
+        font-size: xx-large;
+        padding: 10px;
+    }
+    p{ font-size: 1em;
+        padding-bottom: 50px;
+        padding-right: 45px;
+        font-family:"Rajdhani-Regular" ;
+    }    
+}
+.article1 {
+    display: flex;
+}
+/*aside
+************/
+aside {
+    /* background-color: rebeccapurple; */
+    width: 32%;
+    height: 100%;
+    margin: 3px;
+    margin-top: 20px;
+    padding: 11px;
+    padding-right: 1px;
+    padding-bottom: 80px;
+    border: solid rgba(64, 103, 76, 0.836);
+    border-radius: 10% 10% / 5% 40%;
+    background-color:rgba(64, 103, 76, 0.081);
+
+    font-family: 'Carattere-Regular', serif;
+    font-size: large;
+    letter-spacing: 0.7px;
+    & h1{
+        font-size: x-large;
+        letter-spacing: 1px;
+    }
+}
+aside div iframe {
+    vertical-align: center;
+    width:85%;
+    height: 180px;
+    border-radius: 5px;
+    margin-left: 13px;
+    margin-right: 13px;
+}
+aside div a {
+    margin-left: 20px;
+}
+aside div h2 {
+    vertical-align: center;
+    text-align: center;
+}
+.ppp{ margin-top: 14px;
+}
+#my_picture {
+    width: 110px;
+    height: 100%;
+    margin-right: 4px;
+    margin-top: 12px;
+    border-style: hidden;
+    border-radius: 10px;
+    margin-bottom: 16px;
+}
+.gauche {
+    display: flex;
+    gap: 4px;
+    margin-top: 0;
+    margin-bottom: 10px;
+& div p{
+        text-align: left;
+    }   
+}
+/*footer
+************/
+footer {
+    /* background-color: olivedrab; */
+    width: 100%;
+    clear: both;
+    display: flex;
+    justify-content:space-evenly;
+    
+    h1{ padding:8px;
+        text-transform: uppercase;
+        font-weight: normal;   
+        font-family:"Diphylleia-Regular" ;
+    }
+}

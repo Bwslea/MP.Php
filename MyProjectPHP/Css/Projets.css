@@ -1,0 +1,60 @@
+@charset "utf-8";
+@font-face {
+    font-family:"Carattere-Regular" ;
+    src: url(../Fonts/Carattere-Regular.ttf);
+}
+@font-face {
+    font-family: "Diphylleia-Regular";
+    src: url(../Fonts/Diphylleia-Regular.ttf);
+}
+@font-face {
+    font-family:"Rajdhani-Regular" ;
+    src: url(../Fonts/Rajdhani-Regular.ttf);
+}
+*{
+    margin: 0;
+    padding: 0;
+}
+
+/*section
+************/
+section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+section table {
+    /* pour mettre que une ligne de contour pour le tableau */
+    border-collapse:collapse ;
+    margin: auto;
+}
+
+section table caption {
+    border: 1px solid white;
+    /* top pour placer ce contenu en haut ou bottom en bas du tableau */
+    caption-side: top; 
+
+    vertical-align: center;
+    text-align: center;
+}
+
+section table tr, td, th{
+    border: 1px solid black;   
+    vertical-align: center;
+    text-align: center;
+}
+.formulaire {
+    background-color: rgba(32, 86, 72, 0.543); 
+    padding: 20px; border-radius: 10px; 
+    width: 530px; 
+    height: 100%;
+    margin-bottom: 100px;
+    & h1 {
+        margin-bottom: 10px;
+    }
+    & input {
+        margin-bottom: 25px;
+    }
+}
