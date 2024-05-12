@@ -51,24 +51,20 @@
     </header>
 
     <section id="Cerc">
-        <script>
-            function Cercle()
-            {
-               var Rayon, Surface, Circonference;
-               Rayon=parseFloat(document.frmCercle.txtRayon.value);
-               if(Rayon>0){
-               Surface=Math.PI*Rayon**2;
-               Circonference=2*Math.PI*Rayon;
-               document.frmCercle.txtSurface.value=Surface;
-               document.frmCercle.txtCirconference.value=Circonference;
-               }
-       
-               else{
-                  alert("Calcul impossible! Un rayon doit être positif ou nul"); 
-                  frmCercle.reset();
-               }
-            }
-           </script>
+
+    <?php
+        
+        // Récupération des données envoyées via la méthode POST
+        $rayon = $_POST["rayon"]; 
+
+        // Calculs 
+        $surface=M_PI*$rayon**2;
+        $Circ=2*M_PI*$rayon;
+
+        // Affichage des résultats
+        echo ("<p> Surface : $surface <br> Circonférence : $Circ </p>");
+
+    ?>
            <h1>Projet Cercle</h1>
            <form class="formulaire" name="frmCercle">
            <p>ENONCÉ : CALCULER LA SURFACE ET LA CIRCONFÉRENCE D’UN CERCLE.</p>
@@ -78,16 +74,15 @@
             a.	CALCULER LA SURFACE (SURFACE=Π*RAYON^2)<br>
             b.	CALCULER LA CIRCONFÉRENCE (CIRC=2*Π*RAYON)<br>
             c.	ECRIRE SURFACE ET CIRCONFÉRENCE  </p> <br>
-               Rayon : <input type="text" name="txtRayon" id="rayon" size="15">
-               <input type="button" name="btnEgal" value="=" onclick="Cercle();">
-               <hr> <br>
-               Surface : <input type="text" name="txtSurface" id="surface" size="15">
-               Circonférence : <input type="text" name="txtCirconference" id="circonference" size="15">
-           </form>
+        Rayon :<input type="text" name="txtRayon" id="rayon" size="15">
+        <br>
+        <input type="submit" name="btnEgal" value="=">
+        <hr>
+    </form>
     </section>
 
     <section id="FonctQuad">
-        <script>
+       <!--  <script>
         function calculDélLiv() {
             var HCom = parseFloat(document.frmDélLiv.HCom.value);
             var MnCom = parseFloat(document.frmDélLiv.MnCom.value);
@@ -116,7 +111,7 @@
             }
             document.frmDélLiv.Temps.value = echo;
         }
-        </script>
+        </script> -->
         
         <h1>Projet Délais de livraison</h1>
         <form class="formulaire" name="frmDélLiv">
@@ -143,7 +138,7 @@
             A	ECRIRE "Temps de livraison =" , HDL, "heures" , MDL, "minutes" , SDL, "secondes" <br>
             B	    SINON Ecrire "Retourné au dépôt" </p>  <br>
              <hr> <br>
-            <label for="HCom">Heure de la commande :</label>
+           <!--  <label for="HCom">Heure de la commande :</label>
             <input type="text" id="HCom" name="HCom" size="10"> 
             <label for="MnCom">Minutes de la commande:</label>
             <input type="text" id="MnCom" name="MnCom" size="10"><br>
@@ -156,49 +151,47 @@
             <label for="DélLiv">Délais de la livraison:</label>
             <input type="text" id="DélLiv" name="DélLiv" size="30"><br>
             <label for="Temps">Est-ce que le temps de livraison est respecté ?</label>
-            <input type="text" id="Temps" name="Temps" size="30"><br>
+            <input type="text" id="Temps" name="Temps" size="30"><br>-->
         </form>
     </section>
 
     <section id="Calc">
-        <script>
-            function Calculette()
-            { var A,B,OP,R;
-                A=parseFloat(document.frmCalculette.txtA.value);
-                OP=(document.frmCalculette.txtOP.value);
-                B=parseFloat(document.frmCalculette.txtB.value);
-                switch(OP) {
-                    case("+"):
-                                R=A+B;
-                                break;
-                    case("-"):
-                                R=A-B;
-                                break;
-                    case("*"):
-                                R=A*B;
-                                break;
-                    case("/"):
-                        if(B!=0){
-                                R=A/B;
-                        }
-                        else {
-                                R="Division par 0";
-                        }
+        <?php
+        $A=$_POST["txtA"];
+        $OP=$_POST["lstOP"];
+        $B=$_POST["txtB"];
+        switch($OP) {
+            case("+"):
+                        $R=$A+$B;
                         break;
-                    case("%"):
-                        if(B!=0){
-                                R=A%B;
-                        }
-                        else {
-                                R="Division par 0";
-                        }
+            case("-"):
+                        $R=$A-$B;
                         break;
-                    default:
-                            R="Opération non prévue";
+            case("*"):
+                        $R=$A*$B;
+                        break;
+            case("/"):
+                if($B!=0){
+                        $R=$A/$B;
                 }
-                document.frmCalculette.txtR.value=R;
-            }
-        </script>
+                else {
+                        $R="Division par 0";
+                }
+                break;
+            case("%"):
+                if($B!=0){
+                        $R=$A%$B;
+                }
+                else {
+                        $R="Division par 0";
+                }
+                break;
+
+            default:
+                    $R="Opération non prévue";
+        }
+        echo("<p> Résultat=$R</p>");
+    ?>
         <h1>Projet Calculette </h1>
         <form class="formulaire" name="frmCalculette">
             <p>ENONCÉ : RÉALISER UNE CALCULETTE PERMETTANT DE RÉALISER LES CALCULS ARITHMÉTIQUES DE BASE.</p>
@@ -213,192 +206,199 @@
                 e.	LA DIVISION<br>
                 4.	ECRIRE LE RÉSULTAT </p><br>
                 <hr> <br>
-            Premier nombre :<input type="text" name="txtA">
-            Opérateur :<input type="text" name="txtOP">
-            Deuxième nombre :<input type="text" name="txtB">
-            <input type="button" name="btnEgal" value="=" onclick="Calculette();">
-            <hr> <br>
-            Résultat :<input type="text" name="txtR" size="25">
-        </form>
+        <label>Premier nombre :</label><input type="text" name="txtA"> 
+        <select name="lstOP" id="OP">
+            <option value="+">+</option>
+            <option value="-">-</option>
+            <option value="*">*</option>
+            <option value="/">/</option>
+            <option value="%">%</option>
+        </select>
+        <label>Deuxième nombre :</label><input type="text" name="txtB"> 
+        <input type="submit" value="Calculer">
+    </form>
     </section>
 
     <section id="Civi">
-        <script>
-            function envoyer() {
-                let nom=document.frmCivilité.txtNom.value;
-                let prenom=document.frmCivilité.txtPrenom.value;
-                let adresse=document.frmCivilité.txtAdresse.value;
-                let pays=document.frmCivilité.lstPays.value;
-                let sexe=document.frmCivilité.rdBtnSexe.value;
+         <?php
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            /* Cela permet d’afficher le message approprié après que l’utilisateur ait soumis le formulaire avec les données de civilité. */
+            $nom = strtoupper($_POST["txt_nom"]);
+            $prenom = ucfirst($_POST["txt_prenom"]); // uc first: met le 1er caractère d'un str en majuscule
+            $adresse = ucwords($_POST["txt_adresse"]); // ucwords: met le 1er caractère de chaque mot en majuscules
+            $pays = $_POST["cmb_pays"];
+            $sexe = $_POST["rdbtn_sexe"];
 
-                let vedette=(sexe=="F")?"Madame":"Monsieur";
-                let salutation="Bonjour "+vedette+" "+prenom+" "+nom+", vous habitez "+adresse+" en "+pays;
-                alert(salutation);
-            }
-        </script>
+            $vedette = ($sexe == "masculin") ? "Monsieur" : "Madame";
+            echo "Bonjour $vedette $prenom $nom, vous habitez en $pays au $adresse";
+        } 
+        ?>
         <h1>Projet Civilité </h1>
         <form class="formulaire" name="frmCivilité">
             <p>ENONCÉ : AFFICHER LA CIVILITÉ (MONSIEUR OU MADAME) D’UNE PERSONNE.
                 A PARTIR D’UN FORMULAIRE CONTENANT LES NOMS, PRÉNOM, ADRESSE, PAYS ET SEXE D’UNE PERSONNE, ON AFFICHERA UN MESSAGE CONTENANT LA CIVILITÉ DE LA PERSONNE.</p> <br>
             <hr> <br>
-            <label for="nom">Nom:</label>
-                <input type="text" name="txtNom" id="nom"> <br>
-            <label for="prenom">Prénom:</label>
-                <input type="text" name="txtPrenom" id="prenom"> <br>
-            <label for="adresse">Adresse:</label>
-                <input type="text" name="txtAdresse" id="adresse" cols="30" rows="10"> <br>
-            <label for="pays">Pays:</label>
-                <select name="lstPays" id="pays">
-                    <option value="France">France</option>
-                    <option value="Belgique">Belgique</option>
-                    <option value="Espagne">Espagne</option>
-                    <option value="Allemagne">Allemagne</option>
-                </select> <br>
-            <label>Sexe:</label>
-                <label for="rdBtnSexe">H</label><input type="radio" name="rdBtnSexe" size="15" value="H">
-                <label for="rdBtnSexe">F</label><input type="radio" name="rdBtnSexe" size="15" value="F" checked> <br>
-            <input type="button" value="Envoyer" name="BtnEnvoyer" onclick="envoyer()">
-        </form>
+            
+        <label for="txt_nom">Nom:</label>
+        <input type="text" id="txt_nom" name="txt_nom" required><br>
+        <label for="txt_prenom">Prénom:</label>
+        <input type="text" id="txt_prenom" name="txt_prenom" required><br>
+        
+        <label for="txt_adresse">Adresse:</label>
+        <input type="text" id="txt_adresse" name="txt_adresse" required><br>
+        
+        <label for="cmb_pays">Pays:</label>
+        <select id="cmb_pays" name="cmb_pays">
+            <option value="France">France</option>
+            <option value="Canada">Canada</option>
+            <option value="Canada">Belgique</option>
+            <option value="Canada">Suisse</option>
+        </select><br>
+        
+        <label>Sexe:</label>
+        <input type="radio" id="rdbtn_masculin" name="rdbtn_sexe" value="masculin" required>
+        <label for="rdbtn_masculin">Monsieur</label>
+        <input type="radio" id="rdbtn_feminin" name="rdbtn_sexe" value="feminin" required>
+        <label for="rdbtn_feminin">Madame</label><br>
+        
+        <input type="submit" value="Valider">
+    </form>
     </section>
 
     <section id="DaLong">
-        <script>
-            function DL(){
-                var J, M, A, NbFev, Mois;
-                J=parseFloat(document.frmDL.txtJ.value);
-                M=parseFloat(document.frmDL.txtM.value);
-                A=parseFloat(document.frmDL.txtA.value);
-                if (A%400==0){
-                    NbFev=29;
-                }
-                else{
-                    if(A%100!=0){
-                        if (A%4==0){
-                            NbFev=29;
-                        }
-                        else{
-                            NbFev=28;
-                        }
+         <?php
+            $J=$_POST['txtJ'];
+            $M=$_POST['txtM'];
+            $A=$_POST['txtA'];
+            if ($A%400==0){
+                $NbFev=29;
+            }
+            else{
+                if ($A%100!=0){
+                    if ($A%4==0){
+                        $NbFev=29;
                     }
                     else{
-                        NbFev=28;
+                        $NbFev=28;
                     }
                 }
-                switch (M){
-                    case 1:
-                        if (J>31){
-                            alert("Date incorrecte");
-                        }
-                        else{
-                            Mois="Janvier";
-                            document.write(J+Mois+A);
-                        }
-                        break; 
-
-                    case 2:
-                        if (J>NbFev){
-                            alert("Date incorrecte");
-                        }
-                        else{
-                            Mois="Février";
-                            document.write(J+Mois+A);
-                        }
-                        break;
-                    case 3:
-                        if (J>31){
-                            alert("Date incorrecte");
-                        }
-                        else{
-                            Mois="Mars";
-                            document.write(J+Mois+A);
-                        }
-                        break;
-                    case 4:
-                        if (J>30){
-                            alert("Date incorrecte");
-                        }
-                        else{
-                            Mois="Avril";
-                            document.write(J+Mois+A);
-                        }
-                        break;
-                    case 5:
-                        if (J>31){
-                            alert("Date incorrecte");
-                        }
-                        else{
-                            Mois="Mai";
-                            document.write(J+Mois+A);
-                        }
-                        break;
-                    case 6:
-                        if (J>30){
-                            alert("Date incorrecte");
+                else{
+                    $NbFev=28;
+                }
+            }
+            switch ($M){
+                case 1:
+                    if ($J>31){
+                        echo("Date incorrecte");
                     }
-                        else{
-                            Mois="Juin";
-                            document.write(J+Mois+A);
-                        }
-                        break;
-                    case 7:
-                        if (J>31){
-                            alert("Date incorrecte");
-                        }
-                        else{
-                            Mois="Juillet";
-                            document.write(J+Mois+A);
-                        }
-                        break;
-                    case 8:
-                        if (J>31){
-                            alert("Date incorrecte");
-                        }
-                        else{
-                            Mois="Août";
-                            document.write(J+Mois+A);
-                        }
-                        break;
-                    case 9:
-                        if (J>30){
-                            alert("Date incorrecte");
-                        }
-                        else{
-                            Mois="Septembre";
-                            document.write(J+Mois+A);
-                        }
-                        break;
-                    case 10:
-                        if (J>31){
-                            alert("Date incorrecte");
-                        }
-                        else{
-                            Mois="Octobre";
-                            document.write(J+Mois+A);
-                        }
-                        break;
-                    case 11:
-                        if (J>30){
-                            alert("Date incorrecte");
-                        }
-                        else{
-                            Mois="Novembre";
-                            document.write(J+Mois+A);
-                        }
-                        break;
+                    else{
+                        $Mois="Janvier";
+                        echo("$J $Mois $A");
+                    }
+                    break;    
+                case 2:
+                    if ($J>$NbFev){
+                        echo("Date incorrecte");
+                    }
+                    else{
+                        $Mois="Février";
+                        echo("$J $Mois $A");
+                    }
+                    break;
+                case 3:
+                    if ($J>31){
+                        echo("Date incorrecte");
+                    }
+                    else{
+                        $Mois="Mars";
+                        echo("$J $Mois $A");
+                    }
+                    break;
+                case 4:
+                    if ($J>30){
+                        echo("Date incorrecte");
+                    }
+                    else{
+                        $Mois="Avril";
+                        echo("$J $Mois $A");
+                    }
+                    break;
+                case 5:
+                    if ($J>31){
+                       echo("Date incorrecte");
+                    }
+                    else{
+                        $Mois="Mai";
+                        echo("$J $Mois $A");
+                    }
+                    break;
+                case 6:
+                    if ($J>30){
+                        echo("Date incorrecte");
+                    }
+                    else{
+                        $Mois="Juin";
+                        echo("$J $Mois $A");
+                    }
+                    break;
+                case 7:
+                    if ($J>31){
+                        echo("Date incorrecte");
+                    }
+                    else{
+                        $Mois="Juillet";
+                        echo("$J $Mois $A");
+                    }
+                    break;
+                case 8:
+                    if ($J>31){
+                        echo("Date incorrecte");
+                    }
+                    else{
+                        $Mois="Août";
+                        echo("$J $Mois $A");
+                    }
+                    break;
+                case 9:
+                    if ($J>30){
+                        echo("Date incorrecte");
+                    }
+                    else{
+                        $Mois="Septembre";
+                        echo("$J $Mois $A");
+                    }
+                    break;
+                case 10:
+                    if ($J>31){
+                        echo("Date incorrecte");
+                    }
+                    else{
+                        $Mois="Octobre";
+                        echo("$J $Mois $A");
+                    }
+                    break;
+                case 11:
+                    if ($J>30){
+                        echo("Date incorrecte");
+                    }
+                    else{
+                        $Mois="Novembre";
+                        echo("$J $Mois $A");
+                    }
+                    break;
                     case 12:
-                        if (J>31){
-                            alert("Date incorrecte");
+                        if ($J>31){
+                            echo("Date incorrecte");
                         }
                         else{
-                            Mois="Décembre";
-                            document.write(J+Mois+A);
+                            $Mois="Décembre";
+                            echo("$J $Mois $A");
                         }
                         break;
                     default : 
-                            document.write("Date incorrecte");
+                            echo("Date incorrecte");
                 }
-            }
-        </script>
+            ?>
         <h1>Projet Date Longue</h1>
         <form class="formulaire" name="frmDL">
             <p>ENONCÉ QUE FAIT CET ALGORITHME ? TRANSFORMER UNE DATE DE TYPE ABRÉGÉE EN DATE LONGUE.</p>
@@ -418,11 +418,15 @@
                 d.	ECRIRE SI LA DATE EST VALIDE OU NON <br>
                 3.	ECRIRE LA DATE LONGUE  </p> <br>
             <hr> <br>
-            Jours : <input type="text" name="txtJ" id="J" size="15">
-            Mois : <input type="text" name="txtM" id="M" size="15">
-            Année : <input type="text" name="txtA" id="A" size="15">
-            <input type="button" name="btnEgal" value="=" onclick="DL();">
-        </form>
+        Jour :<input type="text" name="txtJ" id="J" size="15">
+        <hr>    
+        Mois :<input type="text" name="txtM" id="M" size="15">
+        <hr>    
+        Année :<input type="text" name="txtA" id="A" size="15">
+        <hr>
+        <input type="submit" name="btnEgal" value="=">
+        <hr>
+    </form>
     </section>
 </body>
 </html>
